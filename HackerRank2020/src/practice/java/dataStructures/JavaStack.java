@@ -1,7 +1,8 @@
 package practice.java.dataStructures;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  * @title Java Stack
@@ -12,65 +13,79 @@ import java.util.Stack;
  *
  */
 public class JavaStack {
-	public static void main(String[] argh) {
 
-		Stack<String> stos = new Stack<>();
+	public static String check(String test) {
 
-		/*
-		 * Scanner sc = new Scanner(System.in); while (sc.hasNext()) { String input =
-		 * sc.next();
-		 * 
-		 * stos.push(input); }
-		 */
+		List<Character> rev = new ArrayList<>();
 
-		stos.push("{");
-		stos.push("}");
-		stos.push("[");
-		stos.push("]");
+		rev.add(test.charAt(0));
 
-		int i=0;
-		do {
+		for (int i = 1; i < test.length(); i++) {
 
-			System.out.println(stos.get(i) + " " + stos.get(i + 1)+" "+stos.size());
+			char temp = test.charAt(i);
 
-			String q = stos.get(i);
+			System.out.println(i + " " + temp + " " + rev.toString());
 
-			switch (q) {
+			switch (temp) {
 
-			case "{": {
-				
-				System.out.println("delete {: "+stos.get(i) + " " + stos.get(i + 1));
-				
-				stos.pop();
-				stos.pop();
-				//break;
+			case '(': {
+				rev.add(temp);
+				break;
+			}
+			case '{': {
+				rev.add(temp);
+				break;
 			}
 
-			case "[": {
-				System.out.println("delete [: "+stos.get(i) + " " + stos.get(i + 1));
-				
-				stos.pop();
-				stos.pop();
-				//break;
+			case '[': {
+				rev.add(temp);
+				break;
 			}
 
-			case "(": {
-				System.out.println("delete (: "+stos.get(i) + " " + stos.get(i + 1));
-				stos.pop();
-				stos.pop();
-			//	break;
+			case '}': {
+
+				if (rev.size() > 0 && rev.get(rev.size() - 1) == '{') {
+					rev.remove(rev.size() - 1);
+				} else
+					return "false";
+				break;
+			}
+
+			case ')': {
+				if (rev.size() > 0 && rev.get(rev.size() - 1) == '(') {
+					rev.remove(rev.size() - 1);
+				} else
+					return "false";
+				break;
+			}
+
+			case ']': {
+				if (rev.size() > 0 && rev.get(rev.size() - 1) == '[') {
+					rev.remove(rev.size() - 1);
+				} else
+					return "false";
+				break;
 			}
 
 			}
 
-			/*
-			 * if(stos.get(i)&&(stos.get(i))){ System.out.println(i+"peek ok"); }
-			 */
-			for(String s : stos) {
-				System.out.println("za switch: "+s+" "+stos.size());
-			}
+		}
 
-		}while(stos.size()>1);
+		if (rev.isEmpty()) {
+			return "true";
+		} else
+			return "false";
 
 	}
+
+	public static void main(String[] argh) {
+		Scanner sc = new Scanner(System.in);
+		/*
+		 * while (sc.hasNext()) { String input = sc.next();
+		 * System.out.println(check(input)); }
+		 */
+
+		System.out.println(check("[]"));
+	}
+
 }
