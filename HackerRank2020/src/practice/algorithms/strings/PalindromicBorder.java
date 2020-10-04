@@ -11,10 +11,7 @@ package practice.algorithms.strings;
  * @date 14 lip 2020
  */
 import java.io.*;
-import java.math.*;
-import java.text.*;
 import java.util.*;
-import java.util.regex.*;
 
 public class PalindromicBorder {
 

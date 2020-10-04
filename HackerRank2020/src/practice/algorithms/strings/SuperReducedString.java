@@ -4,7 +4,7 @@ import java.io.*;
 
 
 /**
- * @title Mars Exploration
+ * @title Super Reduced String
  *
  * @author Lukasz Janus
  *
